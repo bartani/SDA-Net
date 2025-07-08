@@ -5,8 +5,7 @@
 ![Alt text](img/visualperformance.jpg)
 
 ## News
--Paper Download (coming soon) - Submitting to Expert Systems with Applications
+-Paper Download (coming soon) - Submitting to elsevier journal
 
--Training Code (coming soon)
+-Implementation Code (coming soon)
 
--Pre-trained Models (coming soon)
