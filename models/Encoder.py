@@ -62,38 +62,6 @@ class encoder(nn.Module):
         d6 = self.down5(d5)
         d7 = self.down6(d6)
         y = self.bottleneck(d7)
-        return d1, d2, d3, y
-
-def init_CBDFE(DEVICE, LEARNING_RATE, MODEL_checkpoints):
-    model = encoder(in_channels=3, features=64).to(DEVICE)
-    opt = optim.Adam(model.parameters(), lr=LEARNING_RATE, betas=(0.5, 0.999),)
-    scr = torch.cuda.amp.GradScaler()
-    load_checkpoint(MODEL_checkpoints, model, opt, LEARNING_RATE, DEVICE)
-    return model, opt, scr
-
-def load_checkpoint(checkpoint_file, model, optimizer, lr, DEVICE):
-    print("=> Loading checkpoint")
-    checkpoint = torch.load(checkpoint_file, map_location=DEVICE)
-    model.load_state_dict(checkpoint["state_dict"])
-    optimizer.load_state_dict(checkpoint["optimizer"])
-
-    # If we don't do this then it will just have learning rate of old checkpoint
-    # and it will lead to many hours of debugging \:
-    for param_group in optimizer.param_groups:
-        param_group["lr"] = lr
+        return y
 
 
-def test():
-    DEVICE = "cuda"
-    LEARNING_RATE = 1e-4
-    MODEL_checkpoints = "D:/Papers Code/Low-Light Image Enhancement/CBDFE/weights/LOL/enc_SimCLR.pth.tar"
-    x = torch.randn((8, 3, 256, 256)).to(DEVICE)
-    model, _, _ = init_CBDFE(DEVICE, LEARNING_RATE, MODEL_checkpoints)
-    # model = encoder(in_channels=3, features=64)
-    C1, C2, C3, y = model(x)
-    print(y.shape)
-    print(C1.shape, C2.shape, C3.shape)
-
-
-if __name__ == "__main__":
-    test()
