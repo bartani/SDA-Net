@@ -11,15 +11,21 @@
 ![Alt text](img/visualperformance.jpg)
 
 ## Dataset preparation
-We used (Mixed of LOL and FiveK dataset).
+We used a Mixed of LOL and MIT-Adobe FiveK dataset.
 ```
-datasets/LOL/
+datasets/
 ├── train/
 │   ├── low/
+│       ├── LOL
+│       └── FiveK
 │   └── high/
+│       ├── LOL
+│       └── FiveK
 └── test/
-    ├── low/
-    └── normal/
+    ├── DICM/
+    ├── LIME/
+    ...
+    └── LOL/
 ```
 
 ## Citation
