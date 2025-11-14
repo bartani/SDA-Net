@@ -45,12 +45,8 @@ TEST_PATH = "datasets/test/*"
 ```
 
 ## Train Model
-If you want to train the model on new data, we recommend that retrain the cue model on new data. To do this, run the cues_train.py file. Also, please ensure that in the config.py:
-```
-LOAD_checkpoints = False
-
-```
-Otherwise, you can use pre-trained weights on defined dataset in "weights/cue.pth.tar" path. To this end, please ensure that in the config.py:
+If you want to train the model on new data, we recommend that retrain the both CDFE and SPG model on new data. To do this, run the "cues_train.py" and "CBDFE_train.py" files. 
+Otherwise, you can use pre-trained weights on defined dataset in "weights/cue.pth.tar". Next, please pot downloaded files in the path "weights/" and ensure that in the config.py:
 ```
 LOAD_checkpoints = True
 
