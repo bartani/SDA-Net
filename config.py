@@ -4,11 +4,11 @@ import torch
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 #-----------------------------------------------------------------
-LOAD_checkpoints = False
+LOAD_checkpoints = True
 SAVE_checkpoints = True
 
-CBDFE_checkpoints = f"weights/enc_SimCLR.pth.tar"
-CUE_checkpoints = f"weights/cue.pth.tar"
+CBDFE_checkpoints = f"D:/Papers Code/Low-Light Image Enhancement/CBDFE/weights/LOL/enc_SimCLR.pth.tar"
+CUE_checkpoints = f"D:/Papers Code/Low-Light Image Enhancement/Cue-Net/weights/LOL/cue.pth.tar"
 
 
 GEN_checkpoints = f"weights/gen.pth.tar"

@@ -4,8 +4,7 @@ sys.path.append('data')
 
 import config
 from data.mydataset import train_loader, test_loader
-from models.Encoder import init_CBDFE
-from utility import init_Generator, init_DISC, save_model, save_some_examples, train_disc, train_model, init_Cue
+from utility import init_Generator, init_DISC, save_model, save_some_examples, train_disc, train_model, init_Cue, init_Encode
 from loss import BCE, MSE, L1, Perceptual
 from tqdm import tqdm
 import torch
@@ -21,7 +20,7 @@ def train(
 
         with torch.no_grad():
             LR, ED = cue(x)
-            _, _, _, C = cbdfe(x)
+            C = cbdfe(x)
         
         fake = model(x, LR, ED, C)
 
@@ -43,14 +42,11 @@ def main():
     trn_loader = train_loader()
     tst_loader = test_loader()
     #-------------------------------pre trained models------------------------
-    cbdfe, _, _ = init_CBDFE(config.DEVICE, config.LEARNING_RATE, config.CBDFE_checkpoints)
+    cbdfe, _, _ = init_Encode()
     cue, _, _ = init_Cue()
     #-------------------------------init main models--------------------------
     model, opt, scr = init_Generator()
     disc, opt_disc, scr_disc = init_DISC()
-    #-------------------------------initil saving-----------------------------
-    # save_model(model, disc, opt, opt_disc)
-    # save_some_examples(model, cue, cbdfe, tst_loader, 10000, f"outcomes/enhanced/")
     #-----------------------------------------------------------------
     bce = BCE(config.DEVICE)
     criterion = L1(config.DEVICE)

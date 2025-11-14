@@ -1,7 +1,7 @@
 import torch
 import config
 import torch.optim as optim
-# from models.msff import MSFF
+from models.Encoder import encoder
 from models.generator import Generator
 from models.discriminator import Discriminator
 from models.cue import Cue_Net
@@ -35,6 +35,10 @@ def save_Cue_model(model, opt):
     if config.SAVE_checkpoints:
         save_checkpoint(model, opt, filename=config.CUE_checkpoints)
 
+def save_CBDFE_model(model, opt):
+    if config.SAVE_checkpoints:
+        save_checkpoint(model, opt, filename=config.CBDFE_checkpoints)
+
 def save_some_examples(model, cue, cbdef, loader, epoch, folder):
     
     x = next(iter(loader))
@@ -60,6 +64,14 @@ def init_Cue():
     if config.LOAD_checkpoints:
         load_checkpoint(config.CUE_checkpoints, cue, opt, config.LEARNING_RATE)
     return cue, opt, scr
+
+def init_Encode():
+    model = encoder(in_channels=3, features=64).to(config.DEVICE)
+    opt = optim.Adam(model.parameters(), lr=config.LEARNING_RATE, betas=(0.5, 0.999),)
+    scr = torch.cuda.amp.GradScaler()
+    if config.LOAD_checkpoints:
+        load_checkpoint(config.CBDFE_checkpoints, model, opt, config.LEARNING_RATE)
+    return model, opt, scr
 
 def init_Generator():
     model = Generator(in_channels=3, features=64).to(config.DEVICE)

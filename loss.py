@@ -159,5 +159,34 @@ class TextualConsistencyLoss():
         
         return loss/batch_size
 
+class SimCLRLoss(nn.Module):
+    def __init__(self, temperature=0.7):
+        super(SimCLRLoss, self).__init__()
+        self.temperature = temperature
+
+    def forward(self, x, x_pos):
+        """
+        x: Anchor feature map of shape [batch_size, 512, 1, 1]
+        x_pos: Positive feature map of shape [batch_size, 512, 1, 1]
+        """
+
+        # Normalize the flattened embeddings (required for cosine similarity)
+        # x = F.normalize(x, dim=-1)  # L2 normalization
+        # x_pos = F.normalize(x_pos, dim=-1)
+
+        # Concatenate anchor and positive embeddings
+        features = torch.cat([x, x_pos], dim=0)  # Shape: [2 * batch_size, 512]
+
+        sim = torch.matmul(features, features.T)  # Similarity matrix (2*batch, 2*batch)
+        sim /= self.temperature
+
+        # Create positive pair mask
+        batch_size = x.shape[0]
+        labels = torch.cat([torch.arange(batch_size), torch.arange(batch_size)], dim=0).to(x.device)
+        loss = F.cross_entropy(sim, labels)
+        return loss
+    
+    
+
 if __name__ == "__main__":
     pass
