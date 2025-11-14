@@ -10,6 +10,18 @@
 
 ![Alt text](img/visualperformance.jpg)
 
+##Dataset preparation
+We used (Mixed of LOL and FiveK dataset).
+```
+datasets/LOL/
+├── train/
+│   ├── low/
+│   └── high/
+└── test/
+    ├── low/
+    └── normal/
+```
+
 ## Citation
 If you use this code or the method in your research, please cite our paper:
 ```
