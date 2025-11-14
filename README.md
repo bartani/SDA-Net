@@ -10,6 +10,17 @@
 
 ![Alt text](img/visualperformance.jpg)
 
+## Requirements
+```
+-Python 3.8+
+-PyTorch >= 1.10 (CUDA-enabled for GPU training)
+-torchvision
+-numpy, scipy, pillow
+-opencv-python
+-scikit-image
+-tqdm, matplotlib
+```
+
 ## Dataset preparation
 We used a Mixed of LOL and MIT-Adobe FiveK dataset.
 ```
