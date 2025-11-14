@@ -5,8 +5,7 @@ sys.path.append('data')
 import config
 from data.mydataset import train_loader, test_loader
 from models.Encoder import init_CBDFE
-from models.cue import init_Cue
-from utility import init_Generator, init_DISC, save_model, save_some_examples, train_disc, train_model
+from utility import init_Generator, init_DISC, save_model, save_some_examples, train_disc, train_model, init_Cue
 from loss import BCE, MSE, L1, Perceptual
 from tqdm import tqdm
 import torch
@@ -45,7 +44,7 @@ def main():
     tst_loader = test_loader()
     #-------------------------------pre trained models------------------------
     cbdfe, _, _ = init_CBDFE(config.DEVICE, config.LEARNING_RATE, config.CBDFE_checkpoints)
-    cue, _, _ = init_Cue(config.DEVICE, config.LEARNING_RATE, config.CUE_checkpoints)
+    cue, _, _ = init_Cue()
     #-------------------------------init main models--------------------------
     model, opt, scr = init_Generator()
     disc, opt_disc, scr_disc = init_DISC()

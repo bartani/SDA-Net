@@ -5,8 +5,7 @@ sys.path.append('data')
 import config
 from data.mydataset import test_loader
 from models.Encoder import init_CBDFE
-from models.cue import init_Cue
-from utility import init_Generator
+from utility import init_Generator, init_Cue
 from tqdm import tqdm
 import torch
 from torchvision.utils import save_image
@@ -16,7 +15,7 @@ def main():
     loader = test_loader()
     #-------------------------------pre trained models------------------------
     cbdfe, _, _ = init_CBDFE(config.DEVICE, config.LEARNING_RATE, config.CBDFE_checkpoints)
-    cue, _, _ = init_Cue(config.DEVICE, config.LEARNING_RATE, config.CUE_checkpoints)
+    cue, _, _ = init_Cue()
     #-------------------------------init main models--------------------------
     model, _, _ = init_Generator()
     #-------------------------------initil saving-----------------------------
