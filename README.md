@@ -27,6 +27,11 @@ datasets/
     ...
     └── LOL/
 ```
+You can use the same structure for your data. For this, you need to change the path of the training and test data in the "/data/dataset_config.py".
+```
+TRAIN_PTH = "datasets/train/low/*"
+TEST_PATH = "datasets/test/*"
+```
 
 ## Citation
 If you use this code or the method in your research, please cite our paper:
