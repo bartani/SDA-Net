@@ -12,13 +12,13 @@
 
 ## Requirements
 ```
--Python 3.8+
--PyTorch >= 1.10 (CUDA-enabled for GPU training)
--torchvision
--numpy, scipy, pillow
--opencv-python
--scikit-image
--tqdm, matplotlib
+- ***Python 3.8+
+- ***PyTorch >= 1.10 (CUDA-enabled for GPU training)
+- ***torchvision
+- ***numpy, scipy, pillow
+- ***opencv-python
+- ***scikit-image
+- ***tqdm, matplotlib
 ```
 
 ## Dataset preparation
