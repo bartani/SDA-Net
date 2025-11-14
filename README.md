@@ -10,20 +10,16 @@
 
 ![Alt text](img/visualperformance.jpg)
 
-## Requirements
-Python 3.8+
+## Citation
+If you use this code or the method in your research, please cite our paper:
 
-PyTorch >= 1.10 (CUDA-enabled for GPU training)
+@article{sedeeq2025low,
+  title={Low-Light Image Enhancement via Self-Degradation-Aware and Semantic-Perceptual Guidance Networks},
+  author={Sedeeq, Omed and Anjuman, Sarbast Ahmed and Sulaiman, Sarhang and Bartani, Ako},
+  journal={Knowledge-Based Systems},
+  pages={114571},
+  year={2025},
+  publisher={Elsevier}
+}
 
-torchvision
-
-numpy, scipy, pillow
-
-opencv-python
-
-scikit-image
-
-tqdm, yaml, matplotlib
-
-(optional) TensorBoard or WandB for logging
 
