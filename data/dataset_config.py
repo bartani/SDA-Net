@@ -7,14 +7,27 @@ import torch
 from PIL import ImageFilter
 from pathlib import Path
 
-TRAIN_PTH = "datasets/train/low/*"
-TEST_PATH = "datasets/test/*"
+
+# TRAIN_PTH = "D:/datasets/Low-light image dataset/train/low/*"
+# TEST_PATH = "D:/datasets/Low-light image dataset/test/*"
+
+TRAIN_PTH = "D:/datasets/Low-light image dataset/train/low/*"
+TEST_PATH = "D:/datasets/Low-light image dataset/test/test_flame/*/*"
 #--------------------------------------------------------------------------
 IMAGE_SIZE = 256
+ZOOM_SIZE = 300
 LR_SIZE = 64
 batch_size = 8
 num_workers = 2
 #-----------------------------------------------------------------
+weak_tfms = transforms.Compose([
+    transforms.Resize((ZOOM_SIZE,ZOOM_SIZE)),
+    transforms.RandomCrop((IMAGE_SIZE, IMAGE_SIZE)),
+    transforms.RandomHorizontalFlip(p=0.5),
+    transforms.RandomVerticalFlip(0.5),
+    transforms.ToTensor(),
+    transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+])
 tfms = transforms.Compose([       # Tensor
     # transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
     transforms.ToTensor(), 

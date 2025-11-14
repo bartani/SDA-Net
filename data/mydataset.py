@@ -4,6 +4,7 @@ import dataset_config as config
 import os
 from torchvision.utils import save_image
 import torch
+import random
 
 class train_dataset_for_cue_model(Dataset):
     def __init__(self, imgs):
@@ -42,6 +43,49 @@ def train_loader_cue():
         num_workers=config.num_workers,
     )
     return loader
+
+#--------------------------------------------------
+class train_dataset_for_CBDFE_model(Dataset):
+    def __init__(self, imgs):
+        self.files = imgs
+        self.len_data = len(self.files)
+
+    def __len__(self):
+        return self.len_data
+
+    def __getitem__(self, index):
+        low_path = self.files[index]
+        high_path = config.get_highpath(low_path)
+        
+
+        x = Image.open(low_path).convert("RGB")
+        y = Image.open(high_path).convert("RGB")
+
+        x, y = config.RandomSameCrop(x, y)
+
+        x_pos = config.weak_tfms(x)
+        #----------------------select negative sample------------------------------------
+        idx = random.choice([idx for idx in range(len(self.files)) if index != idx])
+        path = os.path.join(low_path, self.files[idx]) 
+        img = Image.open(path).convert("RGB")
+        x_neg = config.weak_tfms(img) #[config.weak_tfms(img) for _ in range(config.K_augmented)]
+        #--------------------------------------------------------------------------------
+
+        x, y = config.tfms(x), config.tfms(y)    
+
+        return x, y, x_pos, x_neg
+
+def train_loader_CBDFE():
+    myds = train_dataset_for_CBDFE_model(config.get_image_files(config.TRAIN_PTH))
+    loader = DataLoader(
+        myds,
+        batch_size=config.batch_size,
+        shuffle=True,
+        num_workers=config.num_workers,
+    )
+    return loader
+
+#--------------------------------------------------
 
 class train_dataset(Dataset):
     def __init__(self, imgs):
