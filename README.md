@@ -50,7 +50,7 @@ If you want to train the model on new data, we recommend that retrain the cue mo
 LOAD_checkpoints = False
 
 ```
-Otherwise, you can use pre-trained weights on defined dataset. To this end, please ensure that in the config.py:
+Otherwise, you can use pre-trained weights on defined dataset in "weights/cue.pth.tar" path. To this end, please ensure that in the config.py:
 ```
 LOAD_checkpoints = True
 
