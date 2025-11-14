@@ -12,7 +12,7 @@
 
 ## Citation
 If you use this code or the method in your research, please cite our paper:
-
+```
 @article{sedeeq2025low,
   title={Low-Light Image Enhancement via Self-Degradation-Aware and Semantic-Perceptual Guidance Networks},
   author={Sedeeq, Omed and Anjuman, Sarbast Ahmed and Sulaiman, Sarhang and Bartani, Ako},
@@ -21,5 +21,6 @@ If you use this code or the method in your research, please cite our paper:
   year={2025},
   publisher={Elsevier}
 }
+```
 
 
