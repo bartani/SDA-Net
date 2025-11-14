@@ -22,5 +22,6 @@ If you use this code or the method in your research, please cite our paper:
   publisher={Elsevier}
 }
 ```
-
+## Contacts
+For any inquiries contact Ako Bartani: <a href="mailto:a.bartani@uok.ac.ir">a.bartani [at] uok.ac.ir</a>
 
