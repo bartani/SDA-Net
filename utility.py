@@ -4,6 +4,7 @@ import torch.optim as optim
 # from models.msff import MSFF
 from models.generator import Generator
 from models.discriminator import Discriminator
+from models.cue import Cue_Net
 from torchvision.utils import save_image
 
 def save_checkpoint(model, optimizer, filename="my_checkpoint.pth.tar"):
@@ -30,6 +31,10 @@ def save_model(model, disc, opt, opt_disc):
         save_checkpoint(model, opt, filename=config.GEN_checkpoints)
         save_checkpoint(disc, opt_disc, filename=config.DISC_checkpoints)
 
+def save_Cue_model(model, opt):
+    if config.SAVE_checkpoints:
+        save_checkpoint(model, opt, filename=config.CUE_checkpoints)
+
 def save_some_examples(model, cue, cbdef, loader, epoch, folder):
     
     x = next(iter(loader))
@@ -47,6 +52,14 @@ def save_some_examples(model, cue, cbdef, loader, epoch, folder):
         save_image(concat_cover, folder + f"gen_{epoch}.png")
       
     model.train()
+
+def init_Cue():
+    cue = Cue_Net(in_channels=3, features=64).to(config.DEVICE)
+    opt = optim.Adam(cue.parameters(), lr=config.LEARNING_RATE, betas=(0.5, 0.999),)
+    scr = torch.cuda.amp.GradScaler()
+    if config.LOAD_checkpoints:
+        load_checkpoint(config.CUE_checkpoints, cue, opt, config.LEARNING_RATE)
+    return cue, opt, scr
 
 def init_Generator():
     model = Generator(in_channels=3, features=64).to(config.DEVICE)
