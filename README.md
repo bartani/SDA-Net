@@ -44,6 +44,17 @@ TRAIN_PTH = "datasets/train/low/*"
 TEST_PATH = "datasets/test/*"
 ```
 
+## Train Model
+If you want to train the model on new data, we recommend that retrain the cue model on new data. To do this, run the cues_train.py file. Also, please ensure that in the config.py:
+```
+LOAD_checkpoints = False
+
+```
+Otherwise, you can use pre-trained weights on defined dataset. To this end, please ensure that in the config.py:
+```
+LOAD_checkpoints = True
+
+```
 ## Citation
 If you use this code or the method in your research, please cite our paper:
 ```
