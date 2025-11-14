@@ -1,6 +1,8 @@
 # SDA-Net
 
 ## Low-Light Image Enhancement via Self-Degradation-Aware and Semantic-Perceptual Guidance Networks
+### Authors: O. Sedeeq Ahmad, S.A. Anjuman, S. Sulaiman, Ako Bartani
+### Published in: Knowledge-Based Systems (2025)
 
 ### If you see this message, it means we are uploading our codes, please do not download them.
 
@@ -8,8 +10,20 @@
 
 ![Alt text](img/visualperformance.jpg)
 
-## News
--Paper Download (coming soon) - Submitting to elsevier journal
+## Requirements
+Python 3.8+
 
--Implementation Code (coming soon)
+PyTorch >= 1.10 (CUDA-enabled for GPU training)
+
+torchvision
+
+numpy, scipy, pillow
+
+opencv-python
+
+scikit-image
+
+tqdm, yaml, matplotlib
+
+(optional) TensorBoard or WandB for logging
 
