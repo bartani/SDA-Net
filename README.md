@@ -45,14 +45,33 @@ TEST_PATH = "datasets/test/*"
 ```
 
 ## Train Model
-If you want to train the model on new data, we recommend that retrain the both CBDFE and SPG model on new data. To this end, run the "cues_train.py" and "CBDFE_train.py" using new data. 
-Otherwise, you can use pre-trained weights on defined dataset.
-You can download weights: [download link](https://drive.google.com/drive/folders/19ap6Sacju8OUXn71ZI_XGkbY9gsGGBiM?usp=sharing)
-Please pot downloaded files in the path "weights/" and ensure that in the config.py:
+If you want to train the model on new data, we recommend that retrain the both CBDFE and SPG model on new data. To this end, run the "cues_train.py" and "CBDFE_train.py" using new data. Next, run the "train.py" on new dataset.
+
+Otherwise, you can use pre-trained weights on defined dataset. You can download weights: [download link](https://drive.google.com/drive/folders/19ap6Sacju8OUXn71ZI_XGkbY9gsGGBiM?usp=sharing). 
+
+Please pot downloaded files in the path "weights/" and ensure that in the config.py: 
 ```
 LOAD_checkpoints = True
-
 ```
+
+## Test Model
+To test model:
+
+1: ensure that  the model "weights/" are in the weights folder. ([download link](https://drive.google.com/drive/folders/19ap6Sacju8OUXn71ZI_XGkbY9gsGGBiM?usp=sharing).)
+
+2: in the config.py:
+```
+LOAD_checkpoints = True
+```
+
+3: please create new folder in "datasets/test/" path and insert your low-light images on it. Next, change the TEST_PATH in "data/dataset_config.py"
+```
+TEST_PATH = "datasets/test/*"
+```
+
+4: run the "test.py". you can finde the model output in "outcomes/enhanced" path
+
+
 ## Citation
 If you use this code or the method in your research, please cite our paper:
 ```
