@@ -8,11 +8,11 @@ from PIL import ImageFilter
 from pathlib import Path
 
 
-# TRAIN_PTH = "D:/datasets/Low-light image dataset/train/low/*"
-# TEST_PATH = "D:/datasets/Low-light image dataset/test/*"
+# TRAIN_PTH = "datasets/train/low/*"
+# TEST_PATH = "datasets/test/*"
 
-TRAIN_PTH = "D:/datasets/Low-light image dataset/train/low/*"
-TEST_PATH = "D:/datasets/Low-light image dataset/test/test_flame/*/*"
+TRAIN_PTH = "datasets/train/low/*"
+TEST_PATH = "datasets/test/*"
 #--------------------------------------------------------------------------
 IMAGE_SIZE = 256
 ZOOM_SIZE = 300
@@ -100,4 +100,5 @@ def add_gaussian_noise_to_images(x, mean=0, std=0.01):
     if random.random() < 0.5:
         noise = torch.randn_like(x) * std + mean
         x = x + noise
+
     return x
